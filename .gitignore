@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Env files
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+
+# Uploads (but keep folder)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Drizzle
+drizzle/migrations/meta/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
