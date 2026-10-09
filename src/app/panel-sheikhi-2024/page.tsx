@@ -29,6 +29,7 @@ import {
   PhoneCall
 } from "lucide-react";
 
+import ChangePasswordForm from "@/components/admin/ChangePasswordForm";
 export default function AdminPanelPage() {
   // Authentication & 2FA State
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,7 +42,7 @@ export default function AdminPanelPage() {
 
   // Panel Tabs
   const [activeTab, setActiveTab] = useState<
-    "dashboard" | "properties" | "visits" | "submissions" | "appearance" | "seo" | "system"
+    "dashboard" | "properties" | "visits" | "submissions" | "appearance" | "seo" | "system" | "security"
   >("dashboard");
 
   // Data states
@@ -421,6 +422,15 @@ export default function AdminPanelPage() {
           </button>
 
           <button
+            onClick={() => setActiveTab("security")}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
+              activeTab === "security" ? "bg-emerald-700 text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <Lock className="w-4 h-4" />
+            <span>🔐 تغییر رمز عبور</span>
+          </button>
+                    <button
             onClick={() => setActiveTab("system")}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
               activeTab === "system" ? "bg-emerald-700 text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
@@ -1016,6 +1026,27 @@ export default function AdminPanelPage() {
             </div>
           </div>
         )}
+        {activeTab === "security" && (
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-xl font-black text-slate-900">تغییر رمز عبور</h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    برای امنیت بیشتر، رمز عبور خود را به صورت دوره‌ای تغییر دهید
+                  </p>
+                </div>
+              </div>
+              <ChangePasswordForm />
+            </div>
+          </div>
+        )}
+
 
       </div>
 
