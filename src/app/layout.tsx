@@ -5,6 +5,23 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PwaInstallPrompt from "@/components/PwaInstallPrompt";
 
+
+function ServiceWorkerRegister() {
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+              navigator.serviceWorker.register("/sw.js").catch(function() {});
+            });
+          }
+        `,
+      }}
+    />
+  );
+}
+
 export const metadata = generateSeoMetadata({
   title: "املاک شیخی صحنه | خرید، فروش، رهن و اجاره ملک در صحنه",
   description: "املاک شیخی در شهرستان صحنه؛ مرجع تخصصی خرید، فروش، رهن و اجاره آپارتمان، خانه و زمین در صحنه کرمانشاه. مشاوره رایگان با مهندس شیخی.",
@@ -35,6 +52,7 @@ export default function RootLayout({
       <body className="font-['Vazirmatn',sans-serif] bg-slate-50 text-slate-900 antialiased selection:bg-emerald-600 selection:text-white flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <ServiceWorkerRegister />
         <Footer />
         <PwaInstallPrompt />
       </body>
