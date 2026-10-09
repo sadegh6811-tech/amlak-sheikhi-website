@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className="scroll-smooth">
       <head>
+        <meta name="google-site-verification" content="ddf6p1aTyMJUJIXANiUmg7iXA9_WUAofki8ufii6_SVs" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
