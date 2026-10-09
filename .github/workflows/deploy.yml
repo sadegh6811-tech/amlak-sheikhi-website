@@ -1,0 +1,32 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Test Site
+        run: |
+          sleep 10
+          URL="https://amlak-sheikhi-website.vercel.app"
+          for path in / /properties /about /contact; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$URL$path")
+            echo "$path: $code"
+          done
