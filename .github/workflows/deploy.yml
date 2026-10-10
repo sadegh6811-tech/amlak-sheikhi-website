@@ -24,7 +24,7 @@ jobs:
 
       - name: Test Site
         run: |
-          sleep 10
+          sleep 15
           URL="https://amlak-sheikhi-website.vercel.app"
           for path in / /properties /about /contact; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$URL$path")
